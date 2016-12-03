@@ -1,0 +1,71 @@
+
+
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    {{pageTitle}}
+  </div>
+
+  <!-- Filter the projects   -->
+  <div class='panel-body'>
+    <div class='row'>
+      <div class='col-sm-2'>Filter by:</div>
+      <div class='col-sm-4'>
+        <input type='text' [(ngModel)]='listFilter' />
+      </div>
+      <div class="col-sm-6 "> tags: <button *ngFor='let tag of tags'  class='btn btn-danger btn-sm'> {{tag.label}}</button>
+      </div>
+
+    </div>
+    <div class='row' *ngIf='listFilter'>
+      <div class='col-md-6'>
+        <h3>Filtered by: {{listFilter}} </h3>
+      </div>
+    </div>
+
+    <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+    <div class='table-responsive'>
+      <table class='table'
+      *ngIf='projects && projects.length'>
+      <thead>
+        <tr>
+          <th>
+            <button class='btn btn-primary'
+            (click)='toggleImage()'>
+            {{showImage ? 'Hide' : 'Show'}} Image
+          </button>
+        </th>
+        <th>project</th>
+        <th><span class="glyphicon glyphicon-user"></span></th>
+        <th>Starts</th>
+        <th>Ends</th>
+        <th>Ideas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let project of projects | projectFilter:listFilter'>
+        <td>
+          <img *ngIf='showImage'
+          src='./app/assets/images/{{project.img}}'
+          [title]='project.title | uppercase'
+          [style.width.px]='imageWidth'
+          [style.margin.px]='imageMargin'>
+        </td>
+        <td><a [routerLink]="['/project', project.id]">
+          {{project.title | lowercase}}
+        </a>
+      </td>
+      <td>{{ project.users  }}</td>
+      <td>{{ project.startAt }}</td>
+      <td>{{ project.endAt }}</td>
+      <td>
+        <ai-star [rating]='project.ideas'
+        (ratingClicked)='onRatingClicked($event)'>
+      </ai-star>
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>

@@ -1,0 +1,38 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body"  >
+        <div class="row" >
+            <img src="./app/assets/images/logo.jpg"
+                 class="img-responsive center-block"
+                 style="max-height:300px;padding-bottom:50px"/>
+        </div>
+        <div class="row"  >
+            <div class="text-center">Welcome to the particpation platform of Labbersville. </div>
+            <h3 class="text-center">This site is dedicated to every citizen. </h3>
+
+            <div class="text-center">Together, we want to combine our strengths in order to collaboratively improve our city.</div>
+            <div class="text-center">
+                Step by step, idea by idea, citizen by citizen! Help us out!
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="text-center well"> <h1 > <ins>Trending Ideas: </ins></h1></div>
+    <div class="row">
+
+
+    <div class="panel panel-danger col-sm-2 col-sm-offset-1" *ngFor='let idea of trendingideas'>
+
+       <div class="panel-heading">
+        {{idea.title}}
+    </div>
+    <div class="panel-body"  >
+        {{idea.body}}
+    </div>
+       <div class="panel-footer">
+         {{idea.author}}
+       </div>
+    </div>
+</div>
